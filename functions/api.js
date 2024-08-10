@@ -26,7 +26,7 @@ const basePath = "/.netlify/functions/app";
 
 //routes
 app.get(basePath + "/", (req, res) => {
-  res.status(200).send("Welcome to Jobs api");
+  res.status(201).send("Welcome to Jobs api");
 });
 app.use(basePath + "/api/v1/auth", authRouter);
 app.use(basePath + "/api/v1/jobs", authenticationMiddleware, jobRouter);
