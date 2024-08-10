@@ -22,7 +22,7 @@ const jobRouter = require("../routes/job");
 app.use(express.json());
 
 // Base path for Netlify functions
-const basePath = "/.netlify/functions/app";
+const basePath = "/.netlify/functions/api";
 
 //routes
 app.get(basePath + "/", (req, res) => {
