@@ -1,7 +1,7 @@
 require("dotenv").config();
 require("express-async-errors");
 const express = require("express");
-const app = express();
+const api = express();
 const serverless = require("serverless-http");
 const notFound = require("../middleware/notFound");
 const customErrorHandler = require("../middleware/customErrorHandler");
@@ -19,20 +19,17 @@ const authRouter = require("../routes/auth");
 const jobRouter = require("../routes/job");
 
 //middlewares
-app.use(express.json());
-
-// Base path for Netlify functions
-const basePath = "/.netlify/functions/api";
+api.use(express.json());
 
 //routes
-app.get(basePath + "/", (req, res) => {
+api.get("/", (req, res) => {
   res.status(201).send("Welcome to Jobs api");
 });
-app.use(basePath + "/api/v1/auth", authRouter);
-app.use(basePath + "/api/v1/jobs", authenticationMiddleware, jobRouter);
+api.use("/api/v1/auth", authRouter);
+api.use("/api/v1/jobs", authenticationMiddleware, jobRouter);
 
 //Error handler middleware
-app.use(customErrorHandler);
-app.use(notFound);
+api.use(customErrorHandler);
+api.use(notFound);
 
 module.exports.handler = serverless(app);
