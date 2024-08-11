@@ -21,12 +21,15 @@ const jobRouter = require("../routes/job");
 //middlewares
 api.use(express.json());
 
+// Base path for Netlify functions
+const basePath = "/.netlify/functions/api";
+
 //routes
-api.get("/", (req, res) => {
+api.get(basePath + "/", (req, res) => {
   res.status(201).send("Welcome to Jobs api");
 });
-api.use("/api/v1/auth", authRouter);
-api.use("/api/v1/jobs", authenticationMiddleware, jobRouter);
+api.use(basePath + "/api/v1/auth", authRouter);
+api.use(basePath + "/api/v1/jobs", authenticationMiddleware, jobRouter);
 
 //Error handler middleware
 api.use(customErrorHandler);
