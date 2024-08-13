@@ -1,10 +1,9 @@
 {
   "name": "node-jobs-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node functions/api.js",
-    "build": "netlify deploy --prod"
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
