@@ -35,4 +35,4 @@ api.use(basePath + "/api/v1/jobs", authenticationMiddleware, jobRouter);
 api.use(customErrorHandler);
 api.use(notFound);
 
-module.exports.handler = serverless(app);
+module.exports.handler = serverless(api);
