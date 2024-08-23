@@ -6,6 +6,7 @@ const notFound = require("../middleware/notFound");
 const customErrorHandler = require("../middleware/customErrorHandler");
 const authenticationMiddleware = require("../middleware/authentication");
 const connectDB = require("../db/connect");
+const cors = require("cors");
 const port = process.env.PORT || 5000;
 
 //routers
@@ -14,6 +15,7 @@ const jobRouter = require("../routes/job");
 
 //middlewares
 app.use(express.json());
+app.use(cors());
 
 //routes
 app.get("/", (req, res) => {
