@@ -7,6 +7,10 @@ const customErrorHandler = require("../middleware/customErrorHandler");
 const authenticationMiddleware = require("../middleware/authentication");
 const connectDB = require("../db/connect");
 const cors = require("cors");
+const swaggerUI = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("../swagger.yaml");
+
 const port = process.env.PORT || 5000;
 
 //routers
@@ -19,8 +23,14 @@ app.use(cors());
 
 //routes
 app.get("/", (req, res) => {
-  res.status(200).send("Welcome to Jobs app");
+  res
+    .status(200)
+    .send(
+      `<h1>Welcome to jobs API.</h1><a href="/api-docs" >Documentation</a>`
+    );
 });
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authenticationMiddleware, jobRouter);
 
