@@ -9,7 +9,8 @@ const connectDB = require("../db/connect");
 const cors = require("cors");
 const swaggerUI = require("swagger-ui-express");
 const YAML = require("yamljs");
-const swaggerDocument = YAML.load("../swagger.yaml");
+const path = require("path");
+const swaggerDocument = YAML.load(path.resolve(__dirname, "../swagger.yaml"));
 
 const port = process.env.PORT || 5000;
 
