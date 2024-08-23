@@ -41,7 +41,7 @@ userSchema.methods.createJWT = function () {
     email: this.email,
   };
   const token = jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: process.env.jWT_LIFETIME,
+    expiresIn: process.env.JWT_LIFETIME,
   });
   return token;
 };

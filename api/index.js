@@ -17,7 +17,7 @@ app.use(express.json());
 
 //routes
 app.get("/", (req, res) => {
-  res.status(201).send("Welcome to Jobs app");
+  res.status(200).send("Welcome to Jobs app");
 });
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authenticationMiddleware, jobRouter);
